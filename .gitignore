@@ -5,6 +5,8 @@
 /src/test/javascript/coverage/
 /src/test/javascript/PhantomJS*/
 target
+pet-clinic-data/target/
+pet-clinic-web/target/
 
 ######################
 # Node
