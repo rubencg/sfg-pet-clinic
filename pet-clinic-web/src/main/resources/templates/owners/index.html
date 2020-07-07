@@ -5,6 +5,11 @@
     <title>List of Pet Owners</title>
 </head>
 <body>
-<h1 th:text="'List of Pet Owners'"></h1>
+    <h1 th:text="'List of Pet Owners'"></h1>
+    <ul>
+        <li th:each="owner: ${owners}">
+            <span th:text="${owner.getFirstName() + ' ' + owner.getLastName()}"/>
+        </li>
+    </ul>
 </body>
 </html>
