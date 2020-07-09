@@ -5,6 +5,11 @@
     <title>List of Vets</title>
 </head>
 <body>
-    <h1 th:text="'List of Vets'"></h1>
+<h1 th:text="'List of Vets'"></h1>
+<ul>
+    <li th:each="vet: ${vets}">
+        <span th:text="${vet.getFirstName() + ' ' + vet.getLastName()}"/>
+    </li>
+</ul>
 </body>
 </html>
