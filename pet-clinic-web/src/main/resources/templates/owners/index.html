@@ -8,7 +8,7 @@
     <h1 th:text="'List of Pet Owners'"></h1>
     <ul>
         <li th:each="owner: ${owners}">
-            <span th:text="${owner.getFirstName() + ' ' + owner.getLastName()}"/>
+            <span th:text="${owner.getId() + ' ' + owner.getFirstName() + ' ' + owner.getLastName()}"/>
         </li>
     </ul>
 </body>

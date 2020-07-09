@@ -3,13 +3,10 @@ package guru.springframework.sfgpetclinic.services.map;
 import guru.springframework.sfgpetclinic.model.BaseEntitiy;
 import guru.springframework.sfgpetclinic.services.CrudService;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public abstract class AbstractMapService<T extends BaseEntitiy, ID> implements CrudService<T, ID> {
-    protected Map<ID, T> map = new HashMap<>();
+public abstract class AbstractMapService<T extends BaseEntitiy, ID extends Long> implements CrudService<T, ID> {
+    protected Map<Long, T> map = new HashMap<>();
 
     public Set<T> findAll(){
         return new HashSet<>(map.values());
@@ -19,8 +16,16 @@ public abstract class AbstractMapService<T extends BaseEntitiy, ID> implements C
         return map.get(id);
     }
 
-    public T save(ID id, T object){
-        map.put(id, object);
+    public T save(T object){
+        if(object != null){
+            if(object.getId() == null){
+                object.setId(getNextId());
+            }
+            map.put(object.getId(), object);
+        } else {
+            throw new RuntimeException("Object cannot be null");
+        }
+
         return object;
     }
 
@@ -32,8 +37,8 @@ public abstract class AbstractMapService<T extends BaseEntitiy, ID> implements C
         map.entrySet().removeIf(e -> e.getValue() == object);
     }
 
-    public T save(T object) {
-        return save((ID) object.getId(), object);
+    private Long getNextId(){
+        Set<Long> idSet = map.keySet();
+        return idSet.size() == 0 ? 1 : Collections.max(idSet) + 1;
     }
-
 }

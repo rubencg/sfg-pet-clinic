@@ -8,7 +8,7 @@
 <h1 th:text="'List of Vets'"></h1>
 <ul>
     <li th:each="vet: ${vets}">
-        <span th:text="${vet.getFirstName() + ' ' + vet.getLastName()}"/>
+        <span th:text="${vet.getId() + ' ' + vet.getFirstName() + ' ' + vet.getLastName()}"/>
     </li>
 </ul>
 </body>
