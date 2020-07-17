@@ -21,10 +21,20 @@
             <td>
                 <a th:href="@{/owners/__${owner.id}__}" th:text="${owner.firstName + ' ' + owner.lastName}"/></a>
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                <span th:text="${owner.address}"></span>
+            </td>
+            <td>
+                <span th:text="${owner.city}"></span>
+            </td>
+            <td>
+                <span th:text="${owner.telephone}"></span>
+            </td>
+            <td>
+                <ul>
+                    <li th:each="pet : ${owner.pets}" th:text="${pet.petType.name}" />
+                </ul>
+            </td>
 
         </tr>
         </tbody>
