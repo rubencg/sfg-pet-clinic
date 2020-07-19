@@ -37,7 +37,7 @@ public abstract class AbstractMapService<T extends BaseEntitiy, ID extends Long>
         map.entrySet().removeIf(e -> e.getValue() == object);
     }
 
-    private Long getNextId(){
+    protected Long getNextId(){
         Set<Long> idSet = map.keySet();
         return idSet.size() == 0 ? 1 : Collections.max(idSet) + 1;
     }

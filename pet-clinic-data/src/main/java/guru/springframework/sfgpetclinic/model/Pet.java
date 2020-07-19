@@ -3,9 +3,18 @@ package guru.springframework.sfgpetclinic.model;
 import java.time.LocalDate;
 
 public class Pet extends BaseEntitiy {
+    private String name;
     private Owner owner;
     private PetType petType;
     private LocalDate birthDate;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Owner getOwner() {
         return owner;
