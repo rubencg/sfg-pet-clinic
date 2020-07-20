@@ -1,20 +1,14 @@
 package guru.springframework.sfgpetclinic.bootstrap;
 
 
-import guru.springframework.sfgpetclinic.model.Owner;
-import guru.springframework.sfgpetclinic.model.Pet;
-import guru.springframework.sfgpetclinic.model.PetType;
-import guru.springframework.sfgpetclinic.model.Vet;
+import guru.springframework.sfgpetclinic.model.*;
 import guru.springframework.sfgpetclinic.services.OwnerService;
-import guru.springframework.sfgpetclinic.services.PetService;
-import guru.springframework.sfgpetclinic.services.PetTypeService;
+import guru.springframework.sfgpetclinic.services.SpecialtiesService;
 import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashSet;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -29,6 +23,13 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        int count = ownerService.findAll().size();
+        if(count == 0){
+            loadData();
+        }
+    }
+
+    private void loadData() {
         PetType dog = new PetType();
         dog.setName("Perro");
         PetType cat = new PetType();
@@ -64,14 +65,24 @@ public class DataLoader implements CommandLineRunner {
 
         System.out.println("Loaded Owners...");
 
+        Specialty radiology = new Specialty();
+        radiology.setDescription("Radiology");
+        Specialty surgery = new Specialty();
+        surgery.setDescription("Surgery");
+        Specialty dentistry = new Specialty();
+        dentistry.setDescription("Dentistry");
+
         Vet vet1 = new Vet();
         vet1.setFirstName("Alejandro");
         vet1.setLastName("Cardenas");
+        vet1.getSpecialties().add(surgery);
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Edith");
         vet2.setLastName("Mireles");
+        vet2.getSpecialties().add(dentistry);
+        vet2.getSpecialties().add(radiology);
         vetService.save(vet2);
 
         System.out.println("Loaded Vets...");

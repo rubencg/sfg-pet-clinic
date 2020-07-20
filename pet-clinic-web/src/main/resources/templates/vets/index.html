@@ -16,7 +16,11 @@
         <tbody>
         <tr th:each="vet : ${vets}">
             <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
-            <td></td>
+            <td>
+                <ul>
+                    <li th:each="specialty : ${vet.specialties}" th:text="${specialty.description}" />
+                </ul>
+            </td>
         </tr>
         </tbody>
     </table>
