@@ -18,7 +18,7 @@ public class AbstractSDJpaService<T,ID, R extends CrudRepository<T, ID>> impleme
     public Set<T> findAll() {
         Set<T> set = new HashSet<>();
         repository.findAll().forEach(set::add);
-        return null;
+        return set;
     }
 
     @Override
