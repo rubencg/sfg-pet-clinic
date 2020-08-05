@@ -10,4 +10,9 @@ class SfgPetClinicApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void sampleTest() {
+
+	}
+
 }
