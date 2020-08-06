@@ -14,6 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
+    protected Long id;
 
     @Column(name = "address")
     private String address;
