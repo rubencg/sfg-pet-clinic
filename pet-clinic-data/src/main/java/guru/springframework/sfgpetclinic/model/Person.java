@@ -11,7 +11,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class Person extends BaseEntitiy {
     @Column(name = "first_name")
-    private String firstName;
+    protected String firstName;
     @Column(name = "last_name")
-    private String lastName;
+    protected String lastName;
 }
