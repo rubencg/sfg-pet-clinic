@@ -26,7 +26,7 @@ public class OwnerSDJpaServiceTest {
 
     @BeforeEach
     public void setUp(){
-        Owner owner = Owner.builder().build();
+        owner = Owner.builder().build();
         owner.setId(1L);
         String lastName = "Cardenas";
         owner.setLastName(lastName);
@@ -35,7 +35,6 @@ public class OwnerSDJpaServiceTest {
     @Test
     void findById() {
         // given
-
         when(ownerRepository.findById(owner.getId()))
                 .thenReturn(Optional.of(owner));
 
