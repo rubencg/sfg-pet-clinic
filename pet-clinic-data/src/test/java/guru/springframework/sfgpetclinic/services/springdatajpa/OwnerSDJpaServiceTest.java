@@ -9,10 +9,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -42,7 +46,7 @@ public class OwnerSDJpaServiceTest {
         Owner expectedOwner = ownerSDJpaService.findById(owner.getId());
 
         // then
-        assertEquals(expectedOwner.getId(), expectedOwner.getId());
+        assertEquals(owner.getId(), expectedOwner.getId());
     }
 
     @Test
@@ -55,7 +59,7 @@ public class OwnerSDJpaServiceTest {
         Owner expectedOwner = ownerSDJpaService.findByLastName(owner.getLastName());
 
         // then
-        assertEquals(expectedOwner.getLastName(), expectedOwner.getLastName());
+        assertEquals(owner.getLastName(), expectedOwner.getLastName());
     }
 
     @Test
@@ -63,5 +67,18 @@ public class OwnerSDJpaServiceTest {
         ownerSDJpaService.delete(owner);
 
         verify(ownerRepository).delete(owner);
+    }
+
+    @Test
+    void findByLastNameLike() {
+        // given
+        when(ownerRepository.findAllByLastNameLike(anyString()))
+                .thenReturn(Arrays.asList(owner));
+
+        // when
+        List<Owner> expectedOwner = ownerSDJpaService.findAllByLastNameLike("rdenas");
+
+        // then
+        assertEquals(owner.getLastName(), expectedOwner.get(0).getLastName());
     }
 }
